@@ -2,6 +2,7 @@ import numpy as np
 import networkx as nx
 
 
+#class Gene_Network_Analysis_Function():
 #extract the barcode from the main file
 def extractBarcode(ndarray):
     first_line = ndarray[0]
@@ -49,14 +50,13 @@ def zeros(ndarray):
 def normalization(ndarray):        
     normalized_data = np.log10(ndarray)
     return normalized_data
-#sorting the value of a list but returning a collection of index vectors for any of the previous syntaxes.
+#sorting the (q)value of a list but returning a collection of index vectors for any of the previous syntaxes
 def  sortDictValue(ListOrDict):
-	if type(ListOrDict) is list:
-		ListOrDict = dict(enumerate(ListOrDict, start=0))
+    if type(ListOrDict) is list or np.ndarray:
+        ListOrDict = dict(enumerate(ListOrDict, start=0))
     sorted_idxdict = {k: v for k, v in sorted(ListOrDict.items(), key=lambda item: item[1])}
     sorted_value = list(sorted_idxdict.keys())
     return sorted_value
-
 #taking the first M element of an array, based on the first M element of another, checking if the array is mono or multidimensional
 def takeM(ndarray, index, M: int):
     if ndarray.ndim == 1:
@@ -88,3 +88,7 @@ def createSubgraph(graph):
                 main_graph = sg
         subgraph = main_graph
         return subgraph
+def sort_dict(Dict):
+    sorted_idxdict = {k: v for k, v in sorted(Dict.items(), key=lambda item: item[1])}
+    sorted_value = list(sorted_idxdict.keys())
+    return sorted_value
